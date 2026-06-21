@@ -1,0 +1,19 @@
+# Python envs
+.venv/
+.venv-nightly/
+__pycache__/
+*.pyc
+
+# Downloaded GPU stack + driver debs (rebuilt by scripts/setup_arc_stack.sh)
+gpu-stack/
+.driver-debs/
+*.deb
+
+# Run outputs and caches (examples/ is kept intentionally)
+out_*/
+boltz_results_*/
+.boltz/
+*.log
+
+# LibreOffice lock files
+.~lock.*#
