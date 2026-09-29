@@ -1,0 +1,14 @@
+{
+  "input": "<jarvis-work>/exp/targets_pinned/sod1.yaml",
+  "accelerator": "gpu",
+  "precision": "default",
+  "seed": 2,
+  "status": "ok",
+  "wall_s": 43.05,
+  "peak_mem_gib": 2.712,
+  "device_name": "NVIDIA RTX A5000",
+  "torch": "2.14.0+cu126",
+  "precision_plugin": "MixedPrecision",
+  "autocast_device": "cuda",
+  "precision_actual": "bf16-mixed"
+}

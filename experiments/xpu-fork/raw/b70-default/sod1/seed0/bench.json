@@ -1,0 +1,14 @@
+{
+  "input": "<container-work>/exp/targets_pinned/sod1.yaml",
+  "accelerator": "xpu",
+  "precision": "default",
+  "seed": 0,
+  "status": "ok",
+  "wall_s": 52.41,
+  "peak_mem_gib": 2.702,
+  "device_name": "Intel(R) Arc(TM) Pro B70 Graphics",
+  "torch": "2.14.0+xpu",
+  "precision_plugin": "MixedPrecision",
+  "autocast_device": "xpu",
+  "precision_actual": "bf16-mixed"
+}

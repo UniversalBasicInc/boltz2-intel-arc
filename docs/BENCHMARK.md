@@ -64,9 +64,12 @@ Overlay: [`img/vim1_blind_overlay.png`](../img/vim1_blind_overlay.png).
 Boltz-2 is normally run on NVIDIA. Published figures for the *same model* let us
 check that Arc isn't paying an accuracy or speed penalty:
 
-**Accuracy.** Parity is **by construction**: Arc runs the *identical* trained
-weights, so any difference from an NVIDIA run is limited to CUDA-vs-SYCL
-floating-point rounding. The vendor-neutral proof is the agreement with
+**Accuracy.** Arc runs the *identical* trained weights, so any difference from an
+NVIDIA run should be limited to floating-point rounding. **Update (2026-09-28):
+this is now measured**, not assumed: same-seed B70 vs RTX A5000 predictions agree
+to within 0.02 Å in bf16 and under 0.001 Å in fp32, with identical accuracy
+against the crystals (see [`../experiments/xpu-fork`](../experiments/xpu-fork/)).
+The vendor-neutral proof is the agreement with
 experimental crystal structures above — **Mpro 0.24 Å, SOD1 0.62–0.72 Å, blind
 VIM-1 0.65 Å** — squarely in the range AlphaFold3 / Boltz-2 achieve on
 well-resolved targets. An independent evaluation of Boltz-2 [3] is, if anything,
@@ -74,8 +77,10 @@ well-resolved targets. An independent evaluation of Boltz-2 [3] is, if anything,
 and weak binding-affinity correlation for lead-identification) — a property of the
 model, not of the GPU it runs on.
 
-**Speed.** A production Boltz-2 deployment on NVIDIA **L40S** GPUs reports
-**~40–60 s per protein–ligand prediction** [5]. Our Arc Pro B70: SOD1 **~46 s**
+**Speed.** A production Boltz-2 deployment write-up for NVIDIA **L40S** GPUs
+estimates **~40–60 s per protein–ligand prediction** [5]. For a direct measurement
+on the same host, see [`../experiments/xpu-fork`](../experiments/xpu-fork/)
+(RTX A5000 vs Arc Pro B70). Our Arc Pro B70: SOD1 **~46 s**
 end-to-end, Mpro dimer (612 aa) ~2.5 min — same regime.
 
 **Memory.** That same NVIDIA deployment reports **~11 GB (structure) + 7–8 GB

@@ -1,0 +1,14 @@
+# Same-seed rerun comparisons (seed 0), regenerated Tue Sep 29 02:04:25 AM UTC 2026
+B70 sod1 default  run1 vs run2: differ (e0af55cea60c fe3c194f67a5 )
+B70 sod1 det      run1 vs run2: byte-identical
+B70 abl  deterministic run1 vs run2: byte-identical
+determinism2/abl-det-1/bench.json deterministic=True wall_s=117.15
+determinism2/abl-det-2/bench.json deterministic=True wall_s=116.45
+determinism2/default-1/bench.json deterministic=False wall_s=55.32
+determinism2/default-2/bench.json deterministic=False wall_s=52.68
+determinism2/det-1/bench.json deterministic=True wall_s=54.39
+determinism2/det-2/bench.json deterministic=True wall_s=54.48
+A5000 sod1 matrix vs rerun: byte-identical
+A5000 abl_imatinib matrix vs rerun: byte-identical
+3060 sod1 matrix vs rerun: byte-identical
+3060 abl_imatinib matrix vs rerun: byte-identical

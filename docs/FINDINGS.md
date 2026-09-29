@@ -69,6 +69,14 @@ auto c = dev.get_info<sycl::info::device::half_fp_config>();   // <- SIGSEGV
    doesn't provide it.
 2. The loader-version dependency for that extension should be documented.
 
+**Upstream status (update, 2026-09-28).** Reported independently as
+[intel/llvm#22834](https://github.com/intel/llvm/issues/22834) (2026-07-31) and
+fixed in [intel/llvm#22974](https://github.com/intel/llvm/pull/22974) (merged
+2026-08-25): the adapter now looks the function up and only calls it if present.
+As of 2026-09-28 the fix is in the nightly builds but not in release v7.1.1. Note
+we changed the loader, NEO, IGC and gmmlib together, so the loader alone was never
+isolated as the trigger.
+
 **Fix used here.** Move to a version-matched stack whose loader **does** dispatch
 the extension and whose driver exports it: **loader 1.29.0 + NEO 26.05.37020.3 +
 IGC 2.28.4 + gmmlib 22.9.0**, shadowed via `LD_LIBRARY_PATH` (the system driver
@@ -89,6 +97,10 @@ and the system SYCL 2026.0 — all crash.
 ext unconditionally, or the env var isn't honored as documented for Battlemage.
 The documented mitigation gives users a false sense that there's an escape hatch
 when, on this hardware/driver, there isn't.
+
+**Explained (update, 2026-09-28).** The unguarded call sat in Level-Zero adapter
+code shared by the v1 and v2 adapters, so switching to v1 could not avoid it. The
+upstream fix (intel/llvm#22974) changes that shared code.
 
 ---
 
@@ -160,9 +172,13 @@ initializing the device (Lightning, and likely others).
 **Fix used here.** The launcher calls `torch.xpu.init()` as its very first XPU
 operation, before any other import or probe (`scripts/run_boltz.py`).
 
+**Update (2026-09-28).** This does not reproduce on a newer stack (compute
+runtime 26.35, Level-Zero loader 1.28.2, PyTorch 2.14.0): probe-then-init worked
+3 of 3 times. Treat it as specific to the older stack above, not a general rule.
+
 ---
 
-## Finding 5 — PyTorch Lightning 2.5 has no XPU accelerator
+## Finding 5 — PyTorch Lightning 2.5 has no XPU accelerator (still true in 2.6.6)
 
 `pytorch_lightning` 2.5 registers only `cpu / cuda / mps / tpu`. The launcher
 registers a minimal `XPUAccelerator` and pins `SingleDeviceStrategy(xpu:0)`. A
@@ -179,6 +195,10 @@ GPU was usable. Symptom: `/dev/dri` empty, screen black after install.
 
 1. **`e223` is not in the `xe` driver's device table** (kernel 6.19). `xe` loaded
    but bound to zero devices. Fix: boot with **`xe.force_probe=e223`**.
+   **Correction (2026-09-28):** mainline kernels 6.17, 6.18 and 6.19 do list
+   `0xE223` in the Battlemage IDs with no `force_probe` gate, and a second B70
+   host on 6.18 binds it without the flag. The zero-device bind above was
+   probably specific to that machine's kernel build, which we could not re-check.
 2. **GuC firmware too old.** With `force_probe` set, `xe` got further but failed:
    `GuC firmware (70.49.4) is recommended, but only (70.40.2) was found` →
    `Failed to initialize uC (-ENXIO)`. The distro `firmware-intel-graphics`

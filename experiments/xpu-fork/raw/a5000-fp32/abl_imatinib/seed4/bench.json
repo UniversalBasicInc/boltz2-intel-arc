@@ -1,0 +1,14 @@
+{
+  "input": "<jarvis-work>/exp/targets_pinned/abl_imatinib.yaml",
+  "accelerator": "gpu",
+  "precision": "fp32",
+  "seed": 4,
+  "status": "ok",
+  "wall_s": 112.37,
+  "peak_mem_gib": 4.134,
+  "device_name": "NVIDIA RTX A5000",
+  "torch": "2.14.0+cu126",
+  "precision_plugin": "Precision",
+  "autocast_device": null,
+  "precision_actual": "32-true"
+}

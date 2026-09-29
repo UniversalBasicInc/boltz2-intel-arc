@@ -152,14 +152,20 @@ lives in a ~40-line launcher ([`scripts/run_boltz.py`](scripts/run_boltz.py)).
 1. **A coherent Level-Zero / NEO / IGC / gmmlib stack.** The stock Debian 13
    driver (`libze-intel-gpu1` 25.44 + Level-Zero loader 1.20.6) **segfaults** on
    any SYCL `half_fp_config` query — a NULL `zeDeviceGetVectorWidthPropertiesExt`
-   call. The loader was too old to dispatch that extension. Fixed with a
+   call: the adapter called that extension without a null check (the stock
+   loader predates it). We documented this here on 2026-06-21; it was reported
+   independently as [intel/llvm#22834](https://github.com/intel/llvm/issues/22834)
+   and fixed upstream in [intel/llvm#22974](https://github.com/intel/llvm/pull/22974)
+   (merged 2026-08-25; in nightly builds, not yet in release v7.1.1). Worked
+   around here with a
    version-matched userspace stack (loader 1.29 + NEO 26.05 + IGC 2.28.4 +
    gmmlib 22.9.0) shadowed via `LD_LIBRARY_PATH` — **the system driver is never
    modified.**
 2. **A PyTorch-XPU init-order fix.** Calling `torch.xpu.is_available()` /
    `device_count()` *before* `torch.xpu.init()` poisons init and segfaults. The
-   launcher calls `torch.xpu.init()` first.
-3. **A custom PyTorch Lightning XPU accelerator.** Lightning 2.5 ships
+   launcher calls `torch.xpu.init()` first. (Seen on the June 2026 stack; it no
+   longer reproduces with compute runtime 26.35, loader 1.28.2 and PyTorch 2.14.)
+3. **A custom PyTorch Lightning XPU accelerator.** Lightning (2.5, and still 2.6) ships
    `cpu/cuda/mps/tpu` but no `xpu`; the launcher registers one and pins a
    `SingleDeviceStrategy` on `xpu:0`.
 
@@ -210,8 +216,9 @@ with the stock components is what produces the crashes.
 - [x] Protein–ligand **binding affinity** — Abl kinase + imatinib vs decoy — **Arc Pro B70, 32 GB**
 - [x] **Large multimer + drug** — SARS-CoV-2 Mpro dimer + Paxlovid, 612 aa — **Arc Pro B70, 32 GB**
 - [x] **Lung-cancer panel** — EGFR+osimertinib & KRAS-G12C+sotorasib (warheads on Cys797/Cys12) — **Arc Pro B70** — *for Paul*
-- [ ] bf16-mixed precision (currently fp32 for stability)
-- [ ] Native Lightning XPU accelerator upstream
+- [x] bf16-mixed precision on Arc, validated against NVIDIA — [experiments/xpu-fork](experiments/xpu-fork/)
+- [x] Native `boltz predict --accelerator xpu`, proposed to the
+  [boltz-community](https://github.com/Novel-Therapeutics/boltz-community) fork — [experiments/xpu-fork](experiments/xpu-fork/)
 
 ## Accuracy — validated against experimental structures
 
@@ -241,11 +248,12 @@ the range Boltz-2 achieves on NVIDIA — i.e. **no accuracy penalty for leaving
 CUDA**, with sub-Ångström backbone RMSD. Reproduce:
 `scripts/validate_vs_experimental.sh`.
 
-**vs. documented NVIDIA Boltz-2** (same model, same weights): accuracy parity is
-**by construction** — Arc runs the identical trained weights, so the agreement
-with experimental crystal structures above (0.24–0.72 Å) is the vendor-neutral
-proof. On speed, a production NVIDIA **L40S** deployment reports **~40–60 s per
-prediction**; our Arc SOD1 run is **~46 s end-to-end** (~17 s GPU — near-identical
+**vs. NVIDIA, measured** (update, 2026-09-28): the same predictions on an Arc Pro
+B70, an RTX A5000 and an RTX 3060, 5 seeds each, agree to within 0.02 Å for the
+same seed in bf16 (the same spread as between the two NVIDIA cards) and to under
+0.001 Å in fp32, with identical accuracy against the crystal structures on all
+three. Method, raw data and an independent re-check: [experiments/xpu-fork](experiments/xpu-fork/). On speed, an NVIDIA
+**L40S** deployment write-up estimates **~40–60 s per prediction**; our Arc SOD1 run is **~46 s end-to-end** (~17 s GPU — near-identical
 on the B580 and B70, since SOD1 is small / MSA-bound) — the same regime. (An independent evaluation, [Wan et al. 2026](https://arxiv.org/abs/2603.05532),
 is *more critical* of Boltz-2's affinity resolution for lead-identification — but
 that's a property of the model, not the GPU; Arc reproduces whatever the weights

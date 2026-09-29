@@ -1,0 +1,18 @@
+Tue Sep 29 02:04:15 UTC 2026
+============================= test session starts ==============================
+platform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0 -- <container-work>/venv/bin/python
+rootdir: <container-work>/boltz-community
+configfile: pyproject.toml
+plugins: hydra-core-1.3.7, platformdirs-4.12.1
+collecting ... collected 10 items
+tests/test_xpu.py::test_register_xpu_accelerator PASSED                  [ 10%]
+tests/test_xpu.py::test_parse_devices[1-expected0] PASSED                [ 20%]
+tests/test_xpu.py::test_parse_devices[2-expected1] PASSED                [ 30%]
+tests/test_xpu.py::test_parse_devices[devices2-expected2] PASSED         [ 40%]
+tests/test_xpu.py::test_parse_devices[0,2-expected3] PASSED              [ 50%]
+tests/test_xpu.py::test_get_parallel_devices PASSED                      [ 60%]
+tests/test_xpu.py::test_autocast_device_type_xpu PASSED                  [ 70%]
+tests/test_xpu.py::test_predict_peptide_xpu PASSED                       [ 80%]
+tests/test_xpu.py::test_predict_affinity_xpu PASSED                      [ 90%]
+tests/test_xpu.py::test_seed_is_byte_reproducible_xpu PASSED             [100%]
+======================== 10 passed in 292.66s (0:04:52) ========================

@@ -1,0 +1,11 @@
+{
+  "input": "<container-work>/exp/targets_pinned/abl_imatinib.yaml",
+  "accelerator": "xpu",
+  "precision": "fp32",
+  "seed": 3,
+  "status": "ok",
+  "wall_s": 115.04,
+  "peak_mem_gib": 4.125,
+  "device_name": "Intel(R) Arc(TM) Pro B70 Graphics",
+  "torch": "2.14.0+xpu"
+}

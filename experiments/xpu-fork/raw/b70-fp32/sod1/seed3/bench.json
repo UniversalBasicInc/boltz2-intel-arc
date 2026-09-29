@@ -1,0 +1,11 @@
+{
+  "input": "<container-work>/exp/targets_pinned/sod1.yaml",
+  "accelerator": "xpu",
+  "precision": "fp32",
+  "seed": 3,
+  "status": "ok",
+  "wall_s": 51.14,
+  "peak_mem_gib": 3.025,
+  "device_name": "Intel(R) Arc(TM) Pro B70 Graphics",
+  "torch": "2.14.0+xpu"
+}

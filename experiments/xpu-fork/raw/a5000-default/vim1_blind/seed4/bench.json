@@ -1,0 +1,14 @@
+{
+  "input": "<jarvis-work>/exp/targets_pinned/vim1_blind.yaml",
+  "accelerator": "gpu",
+  "precision": "default",
+  "seed": 4,
+  "status": "ok",
+  "wall_s": 45.66,
+  "peak_mem_gib": 3.069,
+  "device_name": "NVIDIA RTX A5000",
+  "torch": "2.14.0+cu126",
+  "precision_plugin": "MixedPrecision",
+  "autocast_device": "cuda",
+  "precision_actual": "bf16-mixed"
+}

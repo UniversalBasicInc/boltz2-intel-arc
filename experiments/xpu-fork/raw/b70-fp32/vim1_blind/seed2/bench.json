@@ -1,0 +1,11 @@
+{
+  "input": "<container-work>/exp/targets_pinned/vim1_blind.yaml",
+  "accelerator": "xpu",
+  "precision": "fp32",
+  "seed": 2,
+  "status": "ok",
+  "wall_s": 55.79,
+  "peak_mem_gib": 3.425,
+  "device_name": "Intel(R) Arc(TM) Pro B70 Graphics",
+  "torch": "2.14.0+xpu"
+}

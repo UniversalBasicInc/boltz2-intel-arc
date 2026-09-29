@@ -1,0 +1,9 @@
+{
+    "affinity_pred_value": -2.4712939262390137,
+    "affinity_probability_binary": 0.9986557960510254,
+    "binder_chain": "C",
+    "affinity_pred_value1": -2.862563133239746,
+    "affinity_probability_binary1": 0.9999315738677979,
+    "affinity_pred_value2": -2.0800247192382812,
+    "affinity_probability_binary2": 0.9973799586296082
+}

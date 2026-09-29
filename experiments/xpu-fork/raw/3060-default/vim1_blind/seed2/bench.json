@@ -1,0 +1,11 @@
+{
+  "input": "<repo>/experiments/xpu-fork/targets_pinned/vim1_blind.yaml",
+  "accelerator": "gpu",
+  "precision": "default",
+  "seed": 2,
+  "status": "ok",
+  "wall_s": 68.63,
+  "peak_mem_gib": 3.069,
+  "device_name": "NVIDIA GeForce RTX 3060",
+  "torch": "2.14.0+cu130"
+}

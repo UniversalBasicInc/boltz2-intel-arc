@@ -1,0 +1,5 @@
+drafts/
+tools/USalign
+tools/USalign.cpp
+__pycache__/
+!*.log

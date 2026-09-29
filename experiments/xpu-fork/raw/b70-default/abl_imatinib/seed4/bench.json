@@ -1,0 +1,14 @@
+{
+  "input": "<container-work>/exp/targets_pinned/abl_imatinib.yaml",
+  "accelerator": "xpu",
+  "precision": "default",
+  "seed": 4,
+  "status": "ok",
+  "wall_s": 113.28,
+  "peak_mem_gib": 3.818,
+  "device_name": "Intel(R) Arc(TM) Pro B70 Graphics",
+  "torch": "2.14.0+xpu",
+  "precision_plugin": "MixedPrecision",
+  "autocast_device": "xpu",
+  "precision_actual": "bf16-mixed"
+}

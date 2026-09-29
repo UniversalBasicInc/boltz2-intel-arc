@@ -1,0 +1,11 @@
+{
+  "input": "<repo>/experiments/xpu-fork/targets_pinned/abl_imatinib.yaml",
+  "accelerator": "gpu",
+  "precision": "default",
+  "seed": 2,
+  "status": "ok",
+  "wall_s": 175.58,
+  "peak_mem_gib": 3.824,
+  "device_name": "NVIDIA GeForce RTX 3060",
+  "torch": "2.14.0+cu130"
+}

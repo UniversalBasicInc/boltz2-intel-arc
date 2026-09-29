@@ -1,0 +1,14 @@
+{
+  "input": "<container-work>/exp/targets_pinned/vim1_blind.yaml",
+  "accelerator": "xpu",
+  "precision": "default",
+  "seed": 3,
+  "status": "ok",
+  "wall_s": 56.42,
+  "peak_mem_gib": 3.061,
+  "device_name": "Intel(R) Arc(TM) Pro B70 Graphics",
+  "torch": "2.14.0+xpu",
+  "precision_plugin": "MixedPrecision",
+  "autocast_device": "xpu",
+  "precision_actual": "bf16-mixed"
+}

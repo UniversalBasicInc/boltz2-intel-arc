@@ -1,0 +1,29 @@
+{
+    "confidence_score": 0.9658764004707336,
+    "ptm": 0.9675412774085999,
+    "iptm": 0.0,
+    "ligand_iptm": 0.0,
+    "protein_iptm": 0.0,
+    "complex_plddt": 0.9654601216316223,
+    "complex_iplddt": 0.9654601216316223,
+    "complex_pde": 0.3055991530418396,
+    "complex_ipde": 0.0,
+    "chains_ptm": {
+        "0": 0.9675412774085999
+    },
+    "pair_chains_iptm": {
+        "0": {
+            "0": 0.9675412774085999
+        }
+    },
+    "complex_pae": 0.5522921681404114,
+    "complex_ipae": null,
+    "chains_pae": {
+        "0": 0.5522921681404114
+    },
+    "pair_chains_pae": {
+        "0": {
+            "0": 0.5522921681404114
+        }
+    }
+}

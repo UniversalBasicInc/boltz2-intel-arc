@@ -1,0 +1,27 @@
+Tue Sep 29 02:09:11 AM UTC 2026
+........................................................................ [ 25%]
+................................................................... [ 50%]
+.................................................................... [ 74%]
+...................................................F.......s..........   [100%]
+=================================== FAILURES ===================================
+______ TestSkipBadInputsClickOption.test_option_exists_and_defaults_false ______
+
+self = <test_cli.TestSkipBadInputsClickOption object at 0x79ef6def7fb0>
+
+    def test_option_exists_and_defaults_false(self):
+        for param in predict.params:
+            if param.name == "skip_bad_inputs":
+>               assert param.default is False
+E               assert Sentinel.UNSET is False
+E                +  where Sentinel.UNSET = <Option skip_bad_inputs>.default
+
+tests/test_cli.py:341: AssertionError
+=============================== warnings summary ===============================
+tests/test_mmseqs2.py::test_run_mmseqs2_retries_http_errors_and_invalid_archives
+  <hq-work>/boltz-community/src/boltz/data/msa/mmseqs2.py:281: DeprecationWarning: Python 3.14 will, by default, filter extracted tar archives and reject files or modify their metadata. Use the filter argument to control this behavior.
+    tar_gz.extractall(path)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_cli.py::TestSkipBadInputsClickOption::test_option_exists_and_defaults_false
+1 failed, 275 passed, 1 skipped, 17 deselected, 1 warning, 9 subtests passed in 20.37s
