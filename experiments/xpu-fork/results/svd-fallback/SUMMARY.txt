@@ -1,0 +1,27 @@
+# svd_probe.py on Arc Pro B70, torch 2.14.0+xpu, commit 488f64d, bf16, --seed 0; 3 interleaved reps per cell. Batch 2 = matrix-batch2.log.
+# predict_step time summed over all predict passes (Mpro: structure + affinity), sync on both sides.
+
+sod1: 1 predict pass(es), 200 SVD calls, shapes [[1, 3, 3]]
+  asis  predict_step s: 20.57, 20.34, 20.70  mean 20.53 sd 0.18
+  timed predict_step s: 20.46, 20.43, 20.33  mean 20.41 sd 0.07
+  stub  predict_step s: 20.11, 20.37, 20.24  mean 20.24 sd 0.13
+  fallback's own time (timed): 0.049, 0.050, 0.050 s = 0.24% of the step
+  asis - stub (ceiling on any on-device SVD's saving): +0.29 s = +1.43%
+
+mpro_paxlovid: 2 predict pass(es), 400 SVD calls, shapes [[1, 3, 3], [5, 3, 3]]
+  asis  predict_step s: 138.84, 138.54, 138.65  mean 138.68 sd 0.15
+  timed predict_step s: 139.02, 139.02, 138.79  mean 138.94 sd 0.13
+  stub  predict_step s: 138.37, 138.32, 138.55  mean 138.42 sd 0.12
+  fallback's own time (timed): 0.106, 0.108, 0.108 s = 0.08% of the step
+  asis - stub (ceiling on any on-device SVD's saving): +0.26 s = +0.19%
+
+# batch 1 (matrix-batch1.log, earlier probe version): SOD1 rows are valid; its Mpro rows time only the
+# last predict pass (affinity) and are superseded by batch 2.
+sod1 batch 1:
+  asis  predict_step s: 20.03, 20.17, 20.29  mean 20.16 sd 0.13
+  timed predict_step s: 20.14, 20.38, 20.35  mean 20.29 sd 0.13
+  stub  predict_step s: 19.93, 19.98, 19.95  mean 19.95 sd 0.02
+  asis - stub: +0.21 s = +1.04%
+
+# Only op reported by PYTORCH_DEBUG_XPU_FALLBACK=1 on either target: aten::_linalg_svd.U (fallback-op.txt).
+# For scale, published end-to-end SOD1 bf16 time (results/summary.md): B70 52.3 s, A5000 43.1 s.

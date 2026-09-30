@@ -1,0 +1,2 @@
+svd-debug.log:operator 'aten::_linalg_svd.U on the XPU backend is falling back to run on the CPU
+svd-debug-mpro.log:operator 'aten::_linalg_svd.U on the XPU backend is falling back to run on the CPU

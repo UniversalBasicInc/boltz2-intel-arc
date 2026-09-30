@@ -53,6 +53,8 @@ Peak memory on the Mpro dimer: B70 5.3 GiB (bf16) / 7.1 GiB (fp32); A5000 8.5 / 
 | `bench_predict.py`, `run_matrix.sh`, `score.py` | harness |
 | `scripts/remote/` | scripts run inside the Intel GPU container |
 | `lightning_bf16_repro.py` | minimal repro: Lightning's `precision="bf16-mixed"` runs fp32 on a custom `xpu` accelerator |
+| `oom_probe.py`, `results/oom-probe/` | PR review: a real OOM in `predict_step` on the B70, before and after keying the cache clear off `self.device.type`, on the XPU wheel and an emulated CUDA+XPU build |
+| `svd_probe.py`, `results/svd-fallback/` | PR review: cost of the XPU→CPU fallback of `torch.linalg.svd` in `weighted_rigid_align` (as is, timed, and stubbed out as a floor) |
 
 Absolute paths in logs are replaced with placeholders such as `<jarvis-work>`. Only the
 predicted structures and JSON outputs are included; Boltz's internal `.npz` arrays are

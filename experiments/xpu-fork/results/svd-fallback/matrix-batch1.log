@@ -1,0 +1,19 @@
+rep=1 RESULT {"mode": "asis", "input": "sod1.yaml", "svd_calls": 200, "svd_seconds": 0.0, "svd_shapes": [[1, 3, 3]], "predict_step_seconds": 20.031040048997966}
+rep=1 RESULT {"mode": "timed", "input": "sod1.yaml", "svd_calls": 200, "svd_seconds": 0.049350489003700204, "svd_shapes": [[1, 3, 3]], "predict_step_seconds": 20.13621187499666}
+rep=1 RESULT {"mode": "stub", "input": "sod1.yaml", "svd_calls": 200, "svd_seconds": 0.0, "svd_shapes": [[1, 3, 3]], "predict_step_seconds": 19.93149473000085}
+rep=1 RESULT {"mode": "asis", "input": "mpro_paxlovid.yaml", "svd_calls": 400, "svd_seconds": 0.0, "svd_shapes": [[1, 3, 3], [5, 3, 3]], "predict_step_seconds": 26.55964941000275}
+rep=1 RESULT {"mode": "timed", "input": "mpro_paxlovid.yaml", "svd_calls": 400, "svd_seconds": 0.107868474064162, "svd_shapes": [[1, 3, 3], [5, 3, 3]], "predict_step_seconds": 26.904122171996278}
+rep=1 RESULT {"mode": "stub", "input": "mpro_paxlovid.yaml", "svd_calls": 400, "svd_seconds": 0.0, "svd_shapes": [[1, 3, 3], [5, 3, 3]], "predict_step_seconds": 26.700666167991585}
+rep=2 RESULT {"mode": "asis", "input": "sod1.yaml", "svd_calls": 200, "svd_seconds": 0.0, "svd_shapes": [[1, 3, 3]], "predict_step_seconds": 20.170264190994203}
+rep=2 RESULT {"mode": "timed", "input": "sod1.yaml", "svd_calls": 200, "svd_seconds": 0.04992894393217284, "svd_shapes": [[1, 3, 3]], "predict_step_seconds": 20.37749268799962}
+rep=2 RESULT {"mode": "stub", "input": "sod1.yaml", "svd_calls": 200, "svd_seconds": 0.0, "svd_shapes": [[1, 3, 3]], "predict_step_seconds": 19.978020887007006}
+rep=2 RESULT {"mode": "asis", "input": "mpro_paxlovid.yaml", "svd_calls": 400, "svd_seconds": 0.0, "svd_shapes": [[1, 3, 3], [5, 3, 3]], "predict_step_seconds": 26.6355107039999}
+rep=2 RESULT {"mode": "timed", "input": "mpro_paxlovid.yaml", "svd_calls": 400, "svd_seconds": 0.11062940690317191, "svd_shapes": [[1, 3, 3], [5, 3, 3]], "predict_step_seconds": 26.737587310999515}
+rep=2 RESULT {"mode": "stub", "input": "mpro_paxlovid.yaml", "svd_calls": 400, "svd_seconds": 0.0, "svd_shapes": [[1, 3, 3], [5, 3, 3]], "predict_step_seconds": 26.624155498007894}
+rep=3 RESULT {"mode": "asis", "input": "sod1.yaml", "svd_calls": 200, "svd_seconds": 0.0, "svd_shapes": [[1, 3, 3]], "predict_step_seconds": 20.287380388996098}
+rep=3 RESULT {"mode": "timed", "input": "sod1.yaml", "svd_calls": 200, "svd_seconds": 0.05103969489573501, "svd_shapes": [[1, 3, 3]], "predict_step_seconds": 20.348133486011648}
+rep=3 RESULT {"mode": "stub", "input": "sod1.yaml", "svd_calls": 200, "svd_seconds": 0.0, "svd_shapes": [[1, 3, 3]], "predict_step_seconds": 19.948756319005042}
+rep=3 RESULT {"mode": "asis", "input": "mpro_paxlovid.yaml", "svd_calls": 400, "svd_seconds": 0.0, "svd_shapes": [[1, 3, 3], [5, 3, 3]], "predict_step_seconds": 26.618545384000754}
+rep=3 RESULT {"mode": "timed", "input": "mpro_paxlovid.yaml", "svd_calls": 400, "svd_seconds": 0.11156325314368587, "svd_shapes": [[1, 3, 3], [5, 3, 3]], "predict_step_seconds": 26.739319757005433}
+rep=3 RESULT {"mode": "stub", "input": "mpro_paxlovid.yaml", "svd_calls": 400, "svd_seconds": 0.0, "svd_shapes": [[1, 3, 3], [5, 3, 3]], "predict_step_seconds": 26.554216976001044}
+DONE

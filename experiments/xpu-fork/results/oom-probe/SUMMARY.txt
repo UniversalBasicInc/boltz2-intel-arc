@@ -1,0 +1,8 @@
+# oom_probe.py on Arc Pro B70 (torch 2.14.0+xpu, SOD1, seed 0). old = PR commit 7fa4ec1, new = 488f64d.
+# This wheel is built without CUDA: torch.backends.cuda.is_built() is False, so torch.cuda.is_available() is False on any host.
+# (The host's RTX A5000 driver was not loaded during these runs, so is_available() alone would prove nothing.)
+# 'mixed' emulates a CUDA+XPU build for the OOM handlers only; see oom_probe.py. 'new' re-run on the exact commit 488f64d.
+old plain: "empty_cache_calls": {"cuda": 0, "mps": 0, "xpu": 1}, "allocated_mib": 1984, "reserved_mib": 2194, "peak_reserved_mib": 2238, "returned": "exception"}
+old mixed: "empty_cache_calls": {"cuda": 1, "mps": 0, "xpu": 0}, "allocated_mib": 1984, "reserved_mib": 2234, "peak_reserved_mib": 2238, "returned": "exception"}
+new plain: "empty_cache_calls": {"cuda": 0, "mps": 0, "xpu": 1}, "allocated_mib": 1984, "reserved_mib": 2194, "peak_reserved_mib": 2238, "returned": "exception"}
+new mixed: "empty_cache_calls": {"cuda": 0, "mps": 0, "xpu": 1}, "allocated_mib": 1984, "reserved_mib": 2194, "peak_reserved_mib": 2238, "returned": "exception"}
